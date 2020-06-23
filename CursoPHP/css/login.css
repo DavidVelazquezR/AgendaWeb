@@ -1,0 +1,39 @@
+.bg{
+    background: url('/CursoPHP/img/fondo-login.jpg') no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-size: 100%;
+}
+
+.form-container{
+    position: absolute;
+    top: 15vh;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+@media screen and (max-width: 1200px){
+    .bg{
+        background-size: 100%;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .bg{
+        background-size: 150%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .bg{
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .bg{
+        background-size: 250%;
+    }
+}
