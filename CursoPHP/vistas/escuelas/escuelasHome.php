@@ -1,7 +1,8 @@
 <?php
-print_r($_SESSION);
+
 //Reset del methodo POST
-unset($_POST['nameEscuela']);
+print_r($_SESSION);
+print_r($_POST);
 ?>
 
 <!DOCTYPE html>

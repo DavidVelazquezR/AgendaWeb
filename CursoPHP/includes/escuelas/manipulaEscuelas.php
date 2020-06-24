@@ -26,6 +26,7 @@ class manipulaEscuelas extends DB
         if ($data[0]->IDEscuela == "") {
             $query = $this->connect()->prepare('INSERT INTO escuelas VALUES (1, :idUsuario, :nombreEscuela)');
             $arrayData = $query->execute(['idUsuario' => $idusuario, 'nombreEscuela' => $nombreEscuela]);
+            return $arrayData;
         }else {
             $idfinal = ((int) $data[0]->IDEscuela) + 1;
 
@@ -38,5 +39,18 @@ class manipulaEscuelas extends DB
             }
         }
 
+    }
+
+    public function eliminaEscuela($idusuario, $idescuela)
+    {
+        $query = $this->connect()->prepare('DELETE FROM escuelas WHERE IDUsuario = :idusario AND IDEscuela = :idescuela');
+        $arrayData = $query->execute(['idusario' => $idusuario, 'idescuela' => $idescuela]);
+
+        return $arrayData;
+    }
+
+    public function modificaEscuela($idusuario, $nombreEscuela)
+    {
+        
     }
 }

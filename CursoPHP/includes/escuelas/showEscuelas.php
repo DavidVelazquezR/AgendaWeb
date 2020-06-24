@@ -13,7 +13,7 @@
     ?>
         <section class="container-fluid">
             <div class="form-container">
-                <form action="/CursoPHP/includes/escuelas/altaEscuelaForm.php" method="POST">
+                <form action="/CursoPHP/includes/escuelas/altaEscuelasForm.php" method="POST">
                     <div class="form-group">
                         <h2>Alta de escuelas</h2>
                         <br>
@@ -32,7 +32,7 @@
     ?>
         <section class="container-fluid">
             <div class="form-container">
-                <form action="/CursoPHP/includes/escuelas/altaEscuelaForm.php" method="POST">
+                <form action="/CursoPHP/includes/escuelas/altaEscuelasForm.php" method="POST">
                     <div class="form-group">
                         <h2>Alta de escuelas</h2>
                         <br>
@@ -59,13 +59,26 @@
 
                 <?php
                 while ($i != count($arrayData)) {
-
                     echo "<tr>";
                     $nombreEscuela = $arrayData[$i]->NombreEscuela;
                     echo "<td> $nombreEscuela </td>";
-                    echo "<td> eliminar </td>";
-                    echo "<td> modificar </td>";
-                    echo "</tr>";
+                ?>
+
+                    <td>
+                        <form method="POST" id="baja_<?php echo $i; ?>" action="/CursoPHP/includes/escuelas/bajaEscuelasForm.php">
+                            <input type="hidden" name="baja" value="<?php echo $i; ?>">
+                            <input type="submit" value="Eliminar" class="btn btn-danger">
+                        </form>
+
+                    </td>
+                    <td>
+                        <form method="POST" id="modify<?php echo $i; ?>" action="">
+                            <input type="submit" value="Modificar" id="<?php echo $i; ?>" class="btn btn-warning">
+                        </form>
+                    </td>
+                    </tr>
+
+                <?php
                     $i++;
                 }
                 ?>
