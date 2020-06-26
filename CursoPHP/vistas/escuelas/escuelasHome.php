@@ -60,6 +60,8 @@ print_r($_POST);
 
             if ($_SESSION['Nav'] == 1) {
                 include_once '/xampp/htdocs/CursoPHP/includes/escuelas/showEscuelas.php';
+            } else if ($_SESSION['Nav'] == 2) {
+                include_once '/xampp/htdocs/CursoPHP/includes/escuelas/showEscuelasM.php';
             }
 
             ?>

@@ -72,8 +72,10 @@
 
                     </td>
                     <td>
-                        <form method="POST" id="modify<?php echo $i; ?>" action="">
-                            <input type="submit" value="Modificar" id="<?php echo $i; ?>" class="btn btn-warning">
+                        <form method="POST" id="modify<?php echo $i; ?>" action="/CursoPHP/includes/escuelas/conectaModify.php">
+                            <input type="hidden" name="modificaID" value="<?php echo $i; ?>">
+                            <input type="hidden" name="modificaNAME" value="<?php echo $arrayData[$i]->NombreEscuela ?>">
+                            <input type="submit" value="Modificar" class="btn btn-warning">
                         </form>
                     </td>
                     </tr>

@@ -10,7 +10,7 @@ class manipulaEscuelas extends DB
 
     public function consultaEscuela($idusuario)
     {
-        $query = $this->connect()->prepare('SELECT IDEscuela, NombreEscuela FROM escuelas WHERE IDUsuario = :idusuario');
+        $query = $this->connect()->prepare('SELECT * FROM escuelas WHERE IDUsuario = :idusuario');
         $arrayData = $query->execute(['idusuario' => $idusuario]);
 
         $arrayData = $query->fetchAll();
@@ -49,8 +49,12 @@ class manipulaEscuelas extends DB
         return $arrayData;
     }
 
-    public function modificaEscuela($idusuario, $nombreEscuela)
+    public function modificaEscuela($idescuela, $nombreEscuela)
     {
-        
+        $query = $this->connect()->prepare('UPDATE escuelas SET NombreEscuela = :nombrescuela WHERE IDEscuela = :idescuela');
+
+        $arrayData = $query->execute(['nombrescuela' => $nombreEscuela, 'idescuela' => $idescuela]);
+
+        return $arrayData;
     }
 }
