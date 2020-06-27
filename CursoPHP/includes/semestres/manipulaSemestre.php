@@ -10,7 +10,7 @@ class manipulaSemestre extends DB
 
     public function consultaSemestre($idescuela)
     {
-        $query = $this->connect()->prepare('SELECT IDSemestre, NombreSemestre FROM semestre WHERE IDEscuela = :idescuela');
+        $query = $this->connect()->prepare('SELECT * FROM semestre WHERE IDEscuela = :idescuela');
         $arrayData = $query->execute(['idescuela' => $idescuela]);
 
         $arrayData = $query->fetchAll();
@@ -18,15 +18,15 @@ class manipulaSemestre extends DB
         return $arrayData;
     }
 
-    public function altaSemestre($idescuela, $idsemestre, $nombreSemestre)
+    public function altaSemestre($idescuela, $nombreSemestre)
     {
         $idfinal = 0;
         $query = $this->connect()->query('SELECT MAX(IDSemestre) AS IDSemestre FROM semestre');
         $data = $query->fetchAll();
 
         if ($data[0]->IDSemestre == "") {
-            $query = $this->connect()->prepare('INSERT INTO semestre VALUES (1, :idsemestre, :nombresemestre)');
-            $arrayData = $query->execute(['idsemestre' => $idsemestre, 'nombresemestre' => $nombreSemestre]);
+            $query = $this->connect()->prepare('INSERT INTO semestre VALUES (1, :idescuela, :nombresemestre)');
+            $arrayData = $query->execute(['idescuela' => $idescuela, 'nombresemestre' => $nombreSemestre]);
         }else {
             $idfinal = ((int) $data[0]->IDSemestre) + 1;
 

@@ -39,7 +39,7 @@ print_r($_SESSION);
 
         <nav class="menu_lateral">
             <a href="/CursoPHP/vistas/escuelas/indexEscuelas.php"><i class="fas fa-school"></i> Escuelas</a>
-            <a href="#"><i class="fas fa-vote-yea"></i> Semestres</a>
+            <a href="/CursoPHP/vistas/semestres/indexSemestres.php"><i class="fas fa-vote-yea"></i> Semestres</a>
             <a href="#"><i class="fas fa-book-open"></i> Materias</a>
             <a href="#"><i class="fas fa-chalkboard-teacher"></i> Profesores</a>
             <a href="#"><i class="fas fa-clock"></i> Horarios</a>
