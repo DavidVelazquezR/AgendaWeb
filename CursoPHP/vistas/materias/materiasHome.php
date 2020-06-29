@@ -13,7 +13,7 @@ print_r($_POST);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Agenda Web Semestres</title>
+    <title>Agenda Web Materias</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c42e92f9a5.js" crossorigin="anonymous"></script>
 
@@ -44,8 +44,8 @@ print_r($_POST);
 
         <nav class="menu_lateral">
             <a href="/CursoPHP/vistas/escuelas/indexEscuelas.php"><i class="fas fa-school"></i> Escuelas</a>
-            <a href="/CursoPHP/vistas/semestres/indexSemestres.php" class="active"><i class="fas fa-vote-yea"></i> Semestres</a>
-            <a href="/CursoPHP/vistas/materias/indexMaterias.php"><i class="fas fa-book-open"></i> Materias</a>
+            <a href="/CursoPHP/vistas/semestres/indexSemestres.php"><i class="fas fa-vote-yea"></i> Semestres</a>
+            <a href="/CursoPHP/vistas/materias/indexMaterias.php" class="active"><i class="fas fa-book-open"></i> Materias</a>
             <a href="/CursoPHP/vistas/profesores/indexProfesores.php"><i class="fas fa-chalkboard-teacher"></i> Profesores</a>
             <a href="#"><i class="fas fa-clock"></i> Horarios</a>
             <a href="#"><i class="fas fa-calendar-alt"></i> Calendario</a>
@@ -59,9 +59,13 @@ print_r($_POST);
             <?php
 
             if ($_SESSION['Nav'] == 1) {
-                include_once '/xampp/htdocs/CursoPHP/includes/semestres/showSemestres.php';
+                include_once '/xampp/htdocs/CursoPHP/includes/materias/showMaterias.php';
             } else if ($_SESSION['Nav'] == 2) {
-                include_once '/xampp/htdocs/CursoPHP/includes/semestres/showSemestres2.php';
+                include_once '/xampp/htdocs/CursoPHP/includes/materias/showMaterias2.php';
+            } else if ($_SESSION['Nav'] == 3) {
+                include_once '/xampp/htdocs/CursoPHP/includes/materias/showMaterias3.php';
+            } else if ($_SESSION['Nav'] == 4) {
+                include_once '/xampp/htdocs/CursoPHP/includes/materias/showMaterias4.php';
             }
 
             ?>

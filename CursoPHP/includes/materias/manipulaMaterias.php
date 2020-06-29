@@ -18,31 +18,58 @@ class manipulaMaterias extends DB
         return $arrayData;
     }
 
-    public function altaMateria($idescuela, $idsemestre, $nombreSemestre)
+    public function altaMateria($idsemestre, $nombreMat)
     {
         $idfinal = 0;
-        $query = $this->connect()->query('SELECT MAX(IDSemestre) AS IDSemestre FROM semestre');
+        $query = $this->connect()->query('SELECT MAX(IDMateria) AS IDMateria FROM materias');
         $data = $query->fetchAll();
 
-        if ($data[0]->IDSemestre == "") {
-            $query = $this->connect()->prepare('INSERT INTO semestre VALUES (1, :idsemestre, :nombresemestre)');
-            $arrayData = $query->execute(['idsemestre' => $idsemestre, 'nombresemestre' => $nombreSemestre]);
-        }else {
-            $idfinal = ((int) $data[0]->IDSemestre) + 1;
+        if ($data[0]->IDMateria == "") {
+            $query = $this->connect()->prepare('INSERT INTO materias VALUES (1, :idsemestre, :nombremateria)');
+            $arrayData = $query->execute(
+                [
+                    'idsemestre' => $idsemestre,
+                    'nombremateria' => $nombreMat
+                ]
+            );
+            return $arrayData;
+        } else {
+            $idfinal = ((int) $data[0]->IDMateria) + 1;
 
             try {
-                $query = $this->connect()->prepare('INSERT INTO semestre VALUES (:idsemestre, :idescuela,  :nombresemestre)');
-                $arrayData = $query->execute(['idsemestre' => $idfinal, 'idescuela' => $idescuela, 'nombresemestre' => $nombreSemestre]);
+                $query = $this->connect()->prepare('INSERT INTO materias VALUES (:idmateria, :idsemestre, :nombremateria)');
+                $arrayData = $query->execute(
+                    [
+                        'idmateria' => $idfinal,
+                        'idsemestre' => $idsemestre,
+                        'nombremateria' => $nombreMat
+                    ]
+                );
                 return $arrayData;
             } catch (\Throwable $th) {
-
             }
         }
-
     }
 
-    public function modificaEscuela($idusuario, $nombreEscuela)
+    public function eliminaMaterias($idmat, $idsemestre)
     {
-        
+        $query = $this->connect()->prepare('DELETE FROM materias WHERE IDSemestre = :idsemestre AND IDMateria = :idmat');
+        $arrayData = $query->execute(['idsemestre' => $idsemestre, 'idmat' => $idmat]);
+
+        return $arrayData;
+    }
+
+    public function modificaMaterias($idmateria, $nomMat)
+    {
+        $query = $this->connect()->prepare('UPDATE materias SET NombreMateria = :nameMat WHERE IDMateria = :idmat');
+
+        $arrayData = $query->execute(
+            [
+                'nameMat' => $nomMat,
+                'idmat' => $idmateria
+            ]
+        );
+
+        return $arrayData;
     }
 }
