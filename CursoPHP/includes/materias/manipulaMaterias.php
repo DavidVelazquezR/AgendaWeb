@@ -10,7 +10,7 @@ class manipulaMaterias extends DB
 
     public function consultaMateria($idsemestre)
     {
-        $query = $this->connect()->prepare('SELECT IDSemestre, NombreSemestre FROM semestre WHERE IDSemestre = :idsemestre');
+        $query = $this->connect()->prepare('SELECT * FROM materias WHERE IDSemestre = :idsemestre');
         $arrayData = $query->execute(['idsemestre' => $idsemestre]);
 
         $arrayData = $query->fetchAll();

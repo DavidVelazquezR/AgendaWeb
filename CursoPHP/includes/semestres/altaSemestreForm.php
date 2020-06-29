@@ -3,29 +3,30 @@ include_once '/xampp/htdocs/CursoPHP/includes/escuelas/manipulaEscuelas.php';
 include_once '/xampp/htdocs/CursoPHP/includes/semestres/manipulaSemestre.php';
 include_once '/xampp/htdocs/CursoPHP/includes/user_session.php';
 
+$userSession = new UserSession();
 $manipulaEscuelas = new manipulaEscuelas();
+$manipulaSemestre = new manipulaSemestre();
+
 $arrayData = $manipulaEscuelas->consultaEscuela($_SESSION['IDUsuario']);
 $idescuela = 0;
 for ($i = 0; $i < count($arrayData); $i++) {
-        if ((string) $arrayData[$i]->NombreEscuela == $_POST['CBEscuela']) {
+        if ((string) $arrayData[$i]->NombreEscuela == $_POST['nombreEscuela']) {
                 $flag = $i;
                 $idescuela = $arrayData[$i]->IDEscuela;
         }
 }
 
-$userSession = new UserSession();
-$manipulaSemestre = new manipulaSemestre();
+
 
 //Validacion BackEnd
 if (isset($_POST['CBSemestres'])) {
         //EL formulario se lleno correctamente
         $query = $manipulaSemestre->altaSemestre($_POST['idEscuela'], $_POST['CBSemestres']);
 
-
-        if ($query == "" || $query == null) {
+        if (!$query) {
                 //Reset del methodo POST
-
-                include_once '/xampp/htdocs/CursoPHP/vistas/semestres/semetsresHome.php';
+                $_SESSION['Nav'] = 1;
+                include_once '/xampp/htdocs/CursoPHP/vistas/semestres/semestresHome.php';
 
                 echo "<script> 
         Swal.fire({
@@ -36,8 +37,8 @@ if (isset($_POST['CBSemestres'])) {
         </script>";
         } else {
                 //Reset del methodo POST
-
-                include_once '/xampp/htdocs/CursoPHP/vistas/semestres/semetsresHome.php';
+                $_SESSION['Nav'] = 1;
+                include_once '/xampp/htdocs/CursoPHP/vistas/semestres/semestresHome.php';
 
                 echo "<script> 
         Swal.fire(
@@ -52,8 +53,8 @@ if (isset($_POST['CBSemestres'])) {
         //EL formulario no se lleno correctamente
 
         //Reset del methodo POST
-
-        include_once '/xampp/htdocs/CursoPHP/vistas/semestres/semetsresHome.php';
+        $_SESSION['Nav'] = 1;
+        include_once '/xampp/htdocs/CursoPHP/vistas/semestres/semestresHome.php';
 
         echo "<script> 
         Swal.fire({

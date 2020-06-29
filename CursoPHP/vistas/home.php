@@ -32,7 +32,7 @@ print_r($_SESSION);
 
             <div class="botones-header">
                 <a href="/CursoPHP/includes/logout.php" class="logout"><i class="fas fa-sign-out-alt"></i></a>
-                <a href="#" class="avatar"><img src="img/user.jpg" alt="" class="src"></a>
+                <a href="#" class="avatar"><img src="/CursoPHP/img/user.jpg" alt="" class="src"></a>
 
             </div>
         </header>

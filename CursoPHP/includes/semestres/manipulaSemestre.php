@@ -27,6 +27,7 @@ class manipulaSemestre extends DB
         if ($data[0]->IDSemestre == "") {
             $query = $this->connect()->prepare('INSERT INTO semestre VALUES (1, :idescuela, :nombresemestre)');
             $arrayData = $query->execute(['idescuela' => $idescuela, 'nombresemestre' => $nombreSemestre]);
+            return $arrayData;
         }else {
             $idfinal = ((int) $data[0]->IDSemestre) + 1;
 
@@ -41,8 +42,11 @@ class manipulaSemestre extends DB
 
     }
 
-    public function modificaEscuela($idusuario, $nombreEscuela)
+    public function eliminaSemestre($idescuela, $idsemestre)
     {
-        
+        $query = $this->connect()->prepare('DELETE FROM semestre WHERE IDSemestre = :idsemestre AND IDEscuela = :idescuela');
+        $arrayData = $query->execute(['idsemestre' => $idsemestre, 'idescuela' => $idescuela]);
+
+        return $arrayData;
     }
 }

@@ -10,7 +10,7 @@ class manipulaProfesores extends DB
 
     public function consultaProfesor($idsemestre)
     {
-        $query = $this->connect()->prepare('SELECT IDSemestre, NombreSemestre FROM semestre WHERE IDSemestre = :idsemestre');
+        $query = $this->connect()->prepare('SELECT * FROM profesores WHERE IDSemestre = :idsemestre');
         $arrayData = $query->execute(['idsemestre' => $idsemestre]);
 
         $arrayData = $query->fetchAll();
