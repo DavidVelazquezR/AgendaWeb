@@ -18,31 +18,66 @@ class manipulaProfesores extends DB
         return $arrayData;
     }
 
-    public function altaProfesor($idescuela, $idsemestre, $nombreSemestre)
+    public function altaProfesor($idsemestre, $nomP, $apP, $amP, $telP, $emailP)
     {
         $idfinal = 0;
-        $query = $this->connect()->query('SELECT MAX(IDSemestre) AS IDSemestre FROM semestre');
+        $query = $this->connect()->query('SELECT MAX(IDProfesor) AS IDProfesor FROM profesores');
         $data = $query->fetchAll();
 
-        if ($data[0]->IDSemestre == "") {
-            $query = $this->connect()->prepare('INSERT INTO semestre VALUES (1, :idsemestre, :nombresemestre)');
-            $arrayData = $query->execute(['idsemestre' => $idsemestre, 'nombresemestre' => $nombreSemestre]);
-        }else {
-            $idfinal = ((int) $data[0]->IDSemestre) + 1;
+        if ($data[0]->IDProfesor == "") {
+            $query = $this->connect()->prepare('INSERT INTO profesores VALUES (1, :idsemestre, :nombreP, :apP, :amP, :telefono, :email)');
+            $arrayData = $query->execute([
+                'idsemestre' => $idsemestre,
+                'nombreP' => $nomP,
+                'apP' => $apP,
+                'amP' => $amP,
+                'telefono' => $telP,
+                'email' => $emailP
+            ]);
+            return $arrayData;
+        } else {
+            $idfinal = ((int) $data[0]->IDProfesor) + 1;
 
             try {
-                $query = $this->connect()->prepare('INSERT INTO semestre VALUES (:idsemestre, :idescuela,  :nombresemestre)');
-                $arrayData = $query->execute(['idsemestre' => $idfinal, 'idescuela' => $idescuela, 'nombresemestre' => $nombreSemestre]);
+                $query = $this->connect()->prepare('INSERT INTO profesores VALUES (:idprofe, :idsemestre, :nombreP, :apP, :amP, :telefono, :email)');
+                $arrayData = $query->execute([
+                    'idprofe' => $idfinal,
+                    'idsemestre' => $idsemestre,
+                    'nombreP' => $nomP,
+                    'apP' => $apP,
+                    'amP' => $amP,
+                    'telefono' => $telP,
+                    'email' => $emailP
+                ]);
                 return $arrayData;
             } catch (\Throwable $th) {
-
             }
         }
-
     }
 
-    public function modificaEscuela($idusuario, $nombreEscuela)
+    public function eliminaProfesores($idprofe, $idsemestre)
     {
-        
+        $query = $this->connect()->prepare('DELETE FROM profesores WHERE IDSemestre = :idsemestre AND IDProfesor = :idprofe');
+        $arrayData = $query->execute(['idsemestre' => $idsemestre, 'idprofe' => $idprofe]);
+
+        return $arrayData;
+    }
+
+    public function modificaProfesores($idprofesor, $nomP, $apP, $amP, $tel, $emailP)
+    {
+        $query = $this->connect()->prepare('UPDATE profesores SET NombreP = :nameprof, ApellidoPaternoP = :app, ApellidoMaternoP = :amp, Telefono = :tel, Email = :email WHERE IDProfesor = :idprofe');
+
+        $arrayData = $query->execute(
+            [
+                'nameprof' => $nomP,
+                'app' => $apP,
+                'amp' => $amP,
+                'tel' => $tel,
+                'email' => $emailP,
+                'idprofe' => $idprofesor
+            ]
+        );
+
+        return $arrayData;
     }
 }

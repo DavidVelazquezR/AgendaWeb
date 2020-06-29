@@ -46,7 +46,7 @@ print_r($_POST);
             <a href="/CursoPHP/vistas/escuelas/indexEscuelas.php" class="active"><i class="fas fa-school"></i> Escuelas</a>
             <a href="/CursoPHP/vistas/semestres/indexSemestres.php" class="boton-menu"><i class="fas fa-vote-yea"></i> Semestres</a>
             <a href="#"><i class="fas fa-book-open"></i> Materias</a>
-            <a href="#"><i class="fas fa-chalkboard-teacher"></i> Profesores</a>
+            <a href="/CursoPHP/vistas/profesores/indexProfesores.php"><i class="fas fa-chalkboard-teacher"></i> Profesores</a>
             <a href="#"><i class="fas fa-clock"></i> Horarios</a>
             <a href="#"><i class="fas fa-calendar-alt"></i> Calendario</a>
             <a href="#"><i class="fas fa-sticky-note"></i> Notas</a>
