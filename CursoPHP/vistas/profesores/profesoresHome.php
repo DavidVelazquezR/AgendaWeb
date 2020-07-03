@@ -1,10 +1,3 @@
-<?php
-
-//Reset del methodo POST
-print_r($_SESSION);
-print_r($_POST);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,9 +40,9 @@ print_r($_POST);
             <a href="/CursoPHP/vistas/semestres/indexSemestres.php"><i class="fas fa-vote-yea"></i> Semestres</a>
             <a href="/CursoPHP/vistas/materias/indexMaterias.php"><i class="fas fa-book-open"></i> Materias</a>
             <a href="/CursoPHP/vistas/profesores/indexProfesores.php" class="active"><i class="fas fa-chalkboard-teacher"></i> Profesores</a>
-            <a href="#"><i class="fas fa-clock"></i> Horarios</a>
-            <a href="#"><i class="fas fa-calendar-alt"></i> Calendario</a>
-            <a href="#"><i class="fas fa-sticky-note"></i> Notas</a>
+            <!--<a href="/CursoPHP/vistas/horarios/indexHorarios.php"><i class="fas fa-clock"></i> Horarios</a>-->
+            <a href="/CursoPHP/vistas/calendario/indexCalendar.php"><i class="fas fa-calendar-alt"></i> Calendario</a>
+            <a href="/CursoPHP/vistas/notas/indexNotas.php"><i class="fas fa-sticky-note"></i> Notas</a>
 
         </nav>
 
@@ -74,6 +67,11 @@ print_r($_POST);
         </main>
     </div>
 
+    <footer class="card-footer">
+        <div class="container">
+            <span class="text-muted">Developed by David Velázquez Ramírez Copyright © 2020</span>
+        </div>
+    </footer>
 
     <script src="/CursoPHP/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

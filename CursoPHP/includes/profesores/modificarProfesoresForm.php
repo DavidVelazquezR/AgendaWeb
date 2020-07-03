@@ -14,13 +14,9 @@ $amP = $_POST['amP'];
 $telP = $_POST['telP'];
 $emailP = $_POST['emailP'];
 
-
-print_r($_POST);
-
 //Validacion BackEnd
 if ($_POST['idProf'] != "") {
     //EL formulario se lleno correctamente
-    print("<br>  Datos a actualizar: " . $nameP . " " . $apP . " " . $amP . " " . $telP . " " . $emailP . "<br>");
     $query = $manipulaProfesores->modificaProfesores(
         $idP,
         $nameP,

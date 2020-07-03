@@ -30,6 +30,12 @@ a {
   grid-template-columns: minmax(300px, 18%) auto;
 }
 
+/*----- ----- ----- FOOTER ----- ----- -----*/
+
+
+
+
+
 /*----- ----- ----- HEADER ----- ----- -----*/
 .header {
   grid-area: header;

@@ -28,27 +28,40 @@ class manipulaHorarios extends DB
         return $arrayData;
     }
 
-    public function altahorario($idescuela, $idsemestre, $nombreSemestre)
+
+    public function altaHorario($idmateria, $idprofesor, $dia, $he, $hs)
     {
         $idfinal = 0;
-        $query = $this->connect()->query('SELECT MAX(IDSemestre) AS IDSemestre FROM semestre');
+        $query = $this->connect()->query('SELECT MAX(IDHorario) AS IDHorario FROM horarios');
         $data = $query->fetchAll();
 
-        if ($data[0]->IDSemestre == "") {
-            $query = $this->connect()->prepare('INSERT INTO semestre VALUES (1, :idsemestre, :nombresemestre)');
-            $arrayData = $query->execute(['idsemestre' => $idsemestre, 'nombresemestre' => $nombreSemestre]);
-        }else {
-            $idfinal = ((int) $data[0]->IDSemestre) + 1;
+        if ($data[0]->IDHorario == "") {
+            $query = $this->connect()->prepare('INSERT INTO horarios VALUES (1, :idmat, :idpro, :dia, :he, :hs)');
+            $arrayData = $query->execute([
+                'idmat' => $idmateria,
+                'idpro' => $idprofesor,
+                'dia' => $dia,
+                'he' => $he,
+                'hs' => $hs,
+            ]);
+            return $arrayData;
+        } else {
+            $idfinal = ((int) $data[0]->IDHorario) + 1;
 
             try {
-                $query = $this->connect()->prepare('INSERT INTO semestre VALUES (:idsemestre, :idescuela,  :nombresemestre)');
-                $arrayData = $query->execute(['idsemestre' => $idfinal, 'idescuela' => $idescuela, 'nombresemestre' => $nombreSemestre]);
+                $query = $this->connect()->prepare('INSERT INTO horarios VALUES (:idhor, :idmat, :idpro, :dia, :he, :hs)');
+                $arrayData = $query->execute([
+                    'idhor' => $idfinal,
+                    'idmat' => $idmateria,
+                    'idpro' => $idprofesor,
+                    'dia' => $dia,
+                    'he' => $he,
+                    'hs' => $hs,
+                ]);
                 return $arrayData;
             } catch (\Throwable $th) {
-
             }
         }
-
     }
 
     public function eliminaHorarioProf($idprofe, $idhorario)
@@ -61,14 +74,22 @@ class manipulaHorarios extends DB
 
     public function eliminaHorarioMat($idmateria, $idhorario)
     {
-        $query = $this->connect()->prepare('DELETE FROM profesores WHERE IDHorario = :idhorario AND IDMateria = :idmateria');
+        $query = $this->connect()->prepare('DELETE FROM horarios WHERE IDHorario = :idhorario AND IDMateria = :idmateria');
         $arrayData = $query->execute(['idhorario' => $idhorario, 'idmateria' => $idmateria]);
 
         return $arrayData;
     }
 
+    public function eliminaHorario($idhorario)
+    {
+        $query = $this->connect()->prepare('DELETE FROM horarios WHERE IDHorario = :idhorario');
+        $arrayData = $query->execute(['idhorario' => $idhorario]);
+
+        return $arrayData;
+    }
+
+
     public function modificaHorario($idusuario, $nombreEscuela)
     {
-        
     }
 }

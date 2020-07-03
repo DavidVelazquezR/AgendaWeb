@@ -8,7 +8,7 @@ create table users(
     ApellidoPaternoU varchar (12),
     ApellidoMaternoU varchar (12),
     Correo varchar (76),
-    Pass varchar (6),
+    Pass varchar (16),
     Rol int
 );
 
@@ -37,8 +37,8 @@ create table profesores(
     IDProfesor int primary key,
     IDSemestre int,
     NombreP varchar (12),
-    ApellidoMaternoP varchar (12),
     ApellidoPaternoP varchar (12),
+    ApellidoMaternoP varchar (12),
     Telefono varchar (10),
     Email varchar(76),
     foreign key (IDSemestre) references semestre (IDSemestre)
@@ -48,9 +48,10 @@ create table horarios(
     IDHorario int primary key,
     IDMateria int,
     IDProfesor int,
-    Dia int,
+    Dia varchar(20),
     HoraEntrada time,
     HoraSalida time,
+    foreign key (IDSemestre) references semestre (IDSemestre),
     foreign key (IDMateria) references materias (IDMateria),
     foreign key (IDProfesor) references profesores (IDProfesor)
 );

@@ -10,13 +10,9 @@ $manipulaMaterias = new manipulaMaterias();
 $idM = $_POST['idMat'];
 $nameM = $_POST['nameMat'];
 
-
-print_r($_POST);
-
 //Validacion BackEnd
 if ($_POST['idMat'] != "") {
     //EL formulario se lleno correctamente
-    print("<br>  Datos a actualizar: " . $nameM ."<br>");
     $query = $manipulaMaterias->modificaMaterias(
         $idM,
         $nameM,

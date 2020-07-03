@@ -13,7 +13,7 @@ class User extends DB
     {
         $md5pass = md5($pass);
         $query = $this->connect()->prepare('SELECT * FROM users WHERE Correo = :correo AND Pass = :pass');
-        $query->execute(['correo' => $correo, 'pass' => $md5pass]);
+        $query->execute(['correo' => $correo, 'pass' => $pass]);
 
         if ($query->rowCount()) {
             return true;

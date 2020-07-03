@@ -9,14 +9,10 @@ $namescuela = (string)$_POST['nameEscuela'];
 $idusuario = $_SESSION['IDUsuario'];
 $idescuela = $_POST['modificaID'];
 
-print_r($_POST);
 
 //Validacion BackEnd
 if ($_POST['nameEscuela'] != "") {
     //EL formulario se lleno correctamente
-    print("<br>  Datos a actualizar: " . $idescuela . " " . $idusuario . " " . $namescuela . "<br>");
-    $query = $manipulaEscuelas->modificaEscuela($idescuela, $namescuela);
-
     if (!$query) {
         //Reset del methodo POST
         unset($_POST['modificaID']);
